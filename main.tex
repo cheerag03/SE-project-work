@@ -1,0 +1,144 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+\onehalfspacing
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+{\Large \textbf{SOFTWARE ENGINEERING PROJECT PROPOSAL}\par}
+\vspace{1.5cm}
+{\Huge \textbf{Smart Internship Management System}\par}
+\vspace{1.5cm}
+{\large Project Proposal\par}
+\vfill
+\textbf{Submitted by}\\
+Cheerag\\
+B.Tech Computer Science Engineering\\
+Thapar Institute of Engineering and Technology\\
+\vfill
+Academic Year 2026--27
+\end{titlepage}
+
+\section{Introduction}
+Finding, applying for, and managing internships can involve multiple disconnected platforms and considerable manual work. Students have to search for opportunities, verify eligibility, submit applications, track application status, and maintain records. Companies and placement cells also need efficient ways to post opportunities, verify applicants, and monitor the recruitment process.
+
+The proposed Smart Internship Management System is a centralized web/mobile-based platform that connects students, companies, placement/faculty coordinators, and administrators. The system will streamline the complete internship lifecycle from opportunity posting to application tracking and final selection.
+
+\section{Problem Statement}
+The current internship process may involve scattered information, manual verification, repetitive data entry, and poor visibility of application status. Students may miss suitable opportunities, while companies and placement coordinators may find it difficult to efficiently manage large numbers of applications.
+
+The project aims to develop a centralized system that simplifies internship discovery, application, verification, recruitment tracking, and reporting.
+
+\section{Objectives}
+\begin{itemize}[leftmargin=*]
+\item Provide a centralized platform for discovering internship opportunities.
+\item Allow students to create profiles containing academic details, skills, interests, and resumes.
+\item Allow companies to post and manage internship opportunities.
+\item Provide an online internship application and tracking mechanism.
+\item Allow placement/faculty coordinators to verify companies and monitor applications.
+\item Provide dashboards for students, companies, and administrators.
+\item Recommend relevant internships to students based on skills, interests, and eligibility.
+\item Maintain a structured record of internship applications and outcomes.
+\end{itemize}
+
+\section{Scope}
+The system will cover four primary roles:
+
+\textbf{Student:}
+Profile creation, resume upload, internship search, filtering, application submission, application tracking, and internship recommendations.
+
+\textbf{Company:}
+Company registration, internship posting, eligibility criteria, applicant viewing, shortlisting, rejection, interview scheduling, and offer management.
+
+\textbf{Faculty/Placement Coordinator:}
+Company verification, internship approval, monitoring applications, viewing student placement statistics, and generating reports.
+
+\textbf{Administrator:}
+User management, role management, system monitoring, and handling reported or inappropriate content.
+
+\section{Key Features}
+\begin{enumerate}[leftmargin=*]
+\item Secure authentication and role-based access control.
+\item Student profile and resume management.
+\item Internship creation and management.
+\item Search and filtering by domain, skills, location, duration, stipend, and eligibility.
+\item Online internship application workflow.
+\item Application status tracking.
+\item Company and internship verification.
+\item Interview and selection status management.
+\item Internship recommendation based on student attributes.
+\item Dashboards and basic analytics.
+\end{enumerate}
+
+\section{Proposed Recommendation Module}
+A lightweight recommendation module will calculate the relevance of an internship for a student using factors such as skill overlap, branch/degree eligibility, preferred domain, location preference, and other eligibility requirements.
+
+The recommendation score can be represented as a weighted score:
+
+\[
+Score = w_1(SkillMatch) + w_2(Eligibility) + w_3(DomainMatch) + w_4(LocationMatch)
+\]
+
+The weights can be adjusted during implementation and testing. The initial version will focus on explainable rule-based matching rather than requiring a complex machine-learning model.
+
+\section{Functional Requirements}
+\begin{itemize}[leftmargin=*]
+\item The system shall allow users to register and log in according to their roles.
+\item The system shall allow students to create and update their profiles.
+\item The system shall allow companies to create internship listings.
+\item The system shall allow students to search and filter internships.
+\item The system shall allow eligible students to submit applications.
+\item The system shall allow companies to view and update applicant status.
+\item The system shall allow coordinators to verify companies and internships.
+\item The system shall maintain application history and outcomes.
+\item The system shall generate internship recommendations for students.
+\end{itemize}
+
+\section{Non-Functional Requirements}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Security:} User data and authentication information must be protected.
+\item \textbf{Usability:} The interface should be simple and easy to navigate.
+\item \textbf{Performance:} Common operations should respond within an acceptable time.
+\item \textbf{Reliability:} Application and internship records should be stored consistently.
+\item \textbf{Scalability:} The architecture should allow additional users and internship listings.
+\item \textbf{Maintainability:} The system should use modular components and clear separation of responsibilities.
+\end{itemize}
+
+\section{Proposed Technology Stack}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Frontend:} Flutter / Web-based frontend
+\item \textbf{Backend:} Node.js with Express
+\item \textbf{Database:} MySQL
+\item \textbf{API:} REST API
+\item \textbf{Authentication:} Token-based authentication with role-based authorization
+\item \textbf{Version Control:} Git and GitHub
+\end{itemize}
+
+\section{Expected Outcome}
+The expected outcome is a functional prototype that demonstrates the complete internship management workflow. Students will be able to discover and apply for internships, companies will be able to manage opportunities and applicants, and placement coordinators will be able to monitor the overall process.
+
+The recommendation feature will provide an additional smart component that helps students identify relevant opportunities more efficiently.
+
+\section{Future Enhancements}
+\begin{itemize}[leftmargin=*]
+\item AI-based resume parsing and skill extraction.
+\item Advanced machine-learning internship recommendations.
+\item Automated resume-to-job matching.
+\item Email and push notifications.
+\item Calendar integration for interviews and deadlines.
+\item Analytics for placement trends and skill demand.
+\item Integration with external job and internship platforms.
+\end{itemize}
+
+\section{Conclusion}
+The Smart Internship Management System aims to solve the fragmentation and manual effort involved in internship management by providing a centralized platform for students, companies, coordinators, and administrators. The project provides sufficient scope for applying software engineering concepts such as requirements analysis, system modeling, modular design, database design, testing, and iterative development while remaining feasible to implement as an academic project.
+
+\end{document}
