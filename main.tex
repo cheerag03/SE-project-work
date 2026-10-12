@@ -1,0 +1,505 @@
+% ============================================================
+% WellnexUS - UCS503 Software Engineering Project Report
+% Compile: pdflatex WellnexUS_Report.tex  (run twice for TOC)
+% Diagrams: put these in an "images/" folder next to this file:
+%   tiet_logo.png gantt.png usecase.png activity.png swimlane.png
+%   dfd0.png dfd1.png dfd2.png er.png
+% Missing images are replaced by a placeholder box automatically.
+% ============================================================
+\documentclass[11pt,a4paper]{report}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{graphicx,xcolor,enumitem,longtable,tabularx,array,booktabs,float,fancyhdr,titlesec,setspace}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\setstretch{1.08}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist{itemsep=1pt,topsep=2pt}
+\definecolor{tietred}{RGB}{140,20,40}
+
+\titleformat{\chapter}[display]{\normalfont\LARGE\bfseries\color{tietred}}{\chaptertitlename\ \thechapter}{8pt}{\LARGE}
+\titlespacing*{\chapter}{0pt}{-30pt}{12pt}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{0.8em}{}
+
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small WellnexUS -- UCS503 Software Engineering}
+\fancyhead[R]{\small Group Q14}
+\fancyfoot[C]{\thepage}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\newcommand{\reportfigure}[4][0.85]{\begin{figure}[H]\centering
+ \IfFileExists{images/#2}{\includegraphics[width=#1\textwidth,keepaspectratio]{images/#2}}%
+ {\fbox{\parbox[c][4cm][c]{0.8\textwidth}{\centering\textit{Insert diagram: images/#2}}}}
+ \caption{#3}\label{#4}\end{figure}}
+
+\newenvironment{usecase}[1]{\par\medskip\noindent\textbf{#1}\par\smallskip\small
+ \begin{tabular}{|>{\bfseries}p{2.8cm}|p{11.8cm}|}\hline}{\end{tabular}\normalsize\par}
+
+\newcommand{\storycard}[4]{\par\medskip\noindent\small
+ \begin{tabularx}{\textwidth}{|Y|}\hline
+ \textbf{\##1}\\\hline #2\\\hline
+ \textbf{Success:} ``#3''\\\hline
+ \textbf{Failure:} #4\\\hline\end{tabularx}\normalsize\par}
+
+\begin{document}
+
+\begin{titlepage}\centering
+{\Huge\underline{WellnexUS}\par}\vspace{1.2cm}
+{\Large\bfseries UCS503 Software Engineering Project Report\par}\vspace{1.2cm}
+{\bfseries Submitted By:}\\[8pt]
+{\large Aryan Tyagi \quad 102317088\\[3pt] Harnoor Kaur \quad 102317099\\[3pt]
+Kalpesh Paliwal \quad 102317087\\[3pt] Krishna Agarwal \quad 102317102\\[3pt]
+Sparsh Bhaskar \quad 102317013\par}\vspace{0.6cm}
+BE Third Year, CSE\\ Group No.: Q14\par\vspace{0.8cm}
+Submitted To:\\ {\Large Dr.\ Tanya Garg}\par\vspace{1cm}
+\IfFileExists{images/tiet_logo.png}{\includegraphics[width=0.4\textwidth]{images/tiet_logo.png}\par}%
+{{\color{tietred}\Huge\bfseries THAPAR INSTITUTE}\\{\color{tietred}\small OF ENGINEERING \& TECHNOLOGY}\\(Deemed to be University)\par}
+\vfill{\Large Computer Science and Engineering Department\\[4pt] TIET, Patiala\par}
+\end{titlepage}
+
+\pagenumbering{roman}\tableofcontents\clearpage\pagenumbering{arabic}
+
+%==================== CHAPTER 1 ====================
+\chapter{Project Selection Phase}
+
+\section{Software Bid}
+\begin{tabular}{@{}ll@{}}
+\textbf{Course:} & UCS 503 -- Software Engineering Lab\\
+\textbf{Group No.:} & Q14\\
+\textbf{Dated:} & 29/08/2025\\
+\textbf{Team Name:} & Synergy Squad\\
+\textbf{Team Members:} & Aryan Tyagi, Harnoor Kaur, Kalpesh Paliwal, Krishna Agarwal, Sparsh Bhaskar\\
+\end{tabular}
+
+\subsection*{Team Experience}
+\small
+\begin{longtable}{|p{2.3cm}|p{2.0cm}|p{6.0cm}|p{4.2cm}|}
+\hline \textbf{Name} & \textbf{Roll No.} & \textbf{Project Experience} & \textbf{Languages / Tools}\\\hline\endhead
+Aryan Tyagi & 102317088 & \textbf{Movie Recommendation System:} AI-driven system giving personalized movie suggestions using a KNN model and cosine similarity. & Python, Jupyter, Scikit-learn, Pandas, KNN, Matplotlib, HTML, CSS, JS, React\\\hline
+Harnoor Kaur & 102317099 & \textbf{ML-Based Heart Disease Predictor:} model on the UCI dataset with preprocessing, normalization and encoding; evaluated Logistic Regression, Decision Tree, Random Forest, XGBoost etc.\ using accuracy, F1-score, confusion matrices and ROC-AUC. & Python, Jupyter, Scikit-learn, Pandas, NumPy, Seaborn, Matplotlib\\\hline
+Kalpesh Paliwal & 102317087 & \textbf{Airbnb Full-Stack Project:} Airbnb-style app (Node.js, Express, MongoDB, EJS/MVC) with listings, reviews, multi-step booking, Mapbox and a Gemini-powered AI chatbot. & JavaScript, MongoDB, Express.js, Node.js, React\\\hline
+Krishna Agarwal & 102317102 & \textbf{Hotel Management System:} web app for room availability, reservations, bookings and a customer feedback portal with a secure backend. & HTML, CSS, JavaScript, Node.js, React\\\hline
+Sparsh Bhaskar & 102317013 & \textbf{ETMS (Employee Task Management System):} full-stack app with secure authentication, role-based access, REST APIs, Django ORM and full CRUD task lifecycle. & Python, Django, SQLite, HTML/CSS\\\hline
+\end{longtable}
+\normalsize
+
+\textbf{Environment experience:} JavaScript (React.js, Node.js, Express.js); Python (Flask, TensorFlow, Keras); MongoDB; HTML/CSS/TailwindCSS.
+
+\subsection*{Choices of Projects}
+\small
+\begin{longtable}{|p{1.8cm}|p{7.4cm}|p{5.2cm}|}
+\hline \textbf{Choice} & \textbf{Motivation, Reason and Feasibility} & \textbf{Unique Selling Point}\\\hline\endhead
+\textbf{First: WellnexUS} &
+\textbf{Motivation:} many people struggle with physical and mental wellbeing due to a lack of personalized guidance and empathetic support. WellnexUS lets users track calories, get personalized exercise and nutrition plans and talk to a supportive mental wellness chatbot.\newline
+\textbf{Reason:} uses our strengths in full-stack development, AI/ML recommendations and chatbots, and modern UI design; gender-based personalization gives tailored physiological and psychological guidance.\newline
+\textbf{Feasibility:} Python for AI/ML, TensorFlow/Keras for recommendation or sentiment analysis, React for dashboards and chat, Node.js/Flask with MongoDB Atlas for scalable storage and user management. &
+Integrates physical and mental wellbeing in one place: personalized goals, calorie and nutrient tracking, gender- and goal-tailored recommendations, an AI mental health chatbot (text and voice), dynamic progress tracking and adaptive feedback in a responsive design.\\\hline
+\textbf{Second: CookSense AI} &
+\textbf{Motivation:} people struggle to decide what to cook with the ingredients they have.\newline
+\textbf{Reason:} fits our AI/ML, image recognition and responsive web skills.\newline
+\textbf{Feasibility:} Python, TensorFlow/Keras for image recognition, React frontend. &
+Combines recipe browsing with AI ingredient recognition: photograph ingredients for recipe suggestions, rated recipes, favorites, step-by-step instructions with timers, comments and nutritional information.\\\hline
+\textbf{Third: JustiFy} &
+\textbf{Motivation:} many people in India struggle with legal documents and jargon; affordable legal advice is limited.\newline
+\textbf{Reason:} legal accessibility, AI/NLP and web development with social impact.\newline
+\textbf{Feasibility:} Python/Node.js backend, React, MongoDB/MySQL, Tesseract OCR, LLMs (OpenAI/Gemini). &
+Simplified legal help via AI document summarization, a legal chatbot and templates; OCR, voice input, legal dictionary, feedback and optional lawyer connect.\\\hline
+\textbf{Fourth: MediConnect+} &
+\textbf{Motivation:} access to quality healthcare is a challenge, especially in rural areas.\newline
+\textbf{Reason:} uses our AI, web and secure data handling knowledge.\newline
+\textbf{Feasibility:} Node.js/Django, encrypted cloud storage, AI symptom-check APIs, WebRTC for video consultations. &
+All-in-one telemedicine: AI symptom checks, virtual consultations and secure health records with 24/7 access and encrypted storage.\\\hline
+\end{longtable}
+\normalsize
+
+\subsection*{Additional Remarks}
+Our team selected WellnexUS for its social impact potential and its alignment with current health technology trends. It leverages our strengths in full-stack development, AI/ML integration and modern UI/UX design. It goes beyond typical fitness trackers by integrating physical health and mental wellbeing, and the supportive chatbot and gender-based personalization make it user-centric. With rising stress levels, sedentary lifestyles and growing demand for accessible digital health solutions, WellnexUS has strong real-world relevance.
+
+%------------------------------------------------------------
+\section{Project Overview}
+
+\subsection{Purpose}
+The primary purpose of WellnexUS is to give users a unified, intuitive platform for managing their overall wellness: fitness, nutrition, mental health and lifestyle habits. By simplifying wellness tracking, it helps individuals, students, working professionals and fitness enthusiasts monitor and improve their physical and mental wellbeing through personalized insights, AI-driven recommendations and customized plans that build sustainable habits.
+
+Since end-users, administrators, wellness experts and the development team have different expectations, this document addresses all of these perspectives, describing what the system aims to achieve, which functionality it supports and how it is envisioned to work in real use.
+
+\subsection{Scope of the Development Project}
+WellnexUS is a digital wellness platform with integrated fitness tracking, nutrition management and mental wellness support. Users can log meals, monitor activity, track emotional states and receive AI-driven recommendations. It provides guided workouts, mood tracking, meditation and curated content, imports health data from connected devices, and offers real-time analytics and dashboards. It also includes community challenges and secure data management, and users can download reports and share insights with trainers, doctors or wellness experts.
+
+\subsection{Intended Audience}
+The audience includes people of all ages who want to improve their health through one platform: fitness enthusiasts, people managing lifestyle conditions, nutrition-conscious users and those seeking mental wellness support. Coaches, trainers, therapists and wellness organizations can track client progress and host programs, and schools and corporate wellness programs may adopt it.
+
+The software must support the following operations:
+\begin{enumerate}
+ \item \textbf{User registration and authentication:} secure accounts via email or social login (Google, Apple); multi-step onboarding collecting age, gender, goals and preferences.
+ \item \textbf{Profile and health data management:} update physical details, activity levels and medical conditions; change passwords, upload pictures, manage notifications.
+ \item \textbf{Goal setting and tracking:} wellness goals (weight loss, mental balance, fitness); daily, weekly and monthly progress charts.
+ \item \textbf{Nutrition management:} food logging with calories and nutrients; food database and barcode scanner integration.
+ \item \textbf{Workout and activity tracking:} AI-recommended or custom plans; real-time tracking with performance summaries.
+ \item \textbf{Mental wellness and AI coaching:} AI coach for meditation, stress management and mood analysis; daily prompts and check-ins.
+ \item \textbf{Community and social interaction:} challenges, progress sharing, forums and leaderboards; expert workshops and Q\&A sessions.
+ \item \textbf{Analytics and reports:} reports on activity, diet and mood trends shown on an intuitive dashboard.
+\end{enumerate}
+
+\subsection{Definitions, Abbreviations and Acronyms}
+\subsubsection*{Definitions}
+\begin{enumerate}
+ \item \textbf{Authentication:} verifying a user's identity (email, password or social login) before granting access.
+ \item \textbf{Registration:} creating an account by providing name, email, age, gender and password.
+ \item \textbf{User Profile:} personal and health details (measurements, conditions, activity level, diet preferences, goals) used for personalization.
+ \item \textbf{Goal Setting:} defining objectives such as weight loss, muscle gain, step count, calorie intake, hydration or mental wellness milestones.
+ \item \textbf{Nutrition Tracking:} logging meals, calories and nutrients via databases, barcode scanning and manual entry.
+ \item \textbf{Workout Session:} a scheduled or completed activity following an AI-generated plan or custom routine.
+ \item \textbf{AI Coach / Wellness Assistant:} an assistant giving personalized guidance on nutrition, workouts, mental health and motivation.
+ \item \textbf{Mood Tracking:} recording emotional states to link mood with diet, sleep, activity and stress.
+ \item \textbf{Meditation \& Mindfulness:} guided meditation, breathing routines and stress-relief practices.
+ \item \textbf{Challenge Participation:} joining community or individual events such as step or hydration challenges.
+ \item \textbf{Analytics \& Insights:} personalized reports on calories, moods, workouts, hydration and goal progress.
+ \item \textbf{Community Engagement:} groups, forums and discussions for sharing progress and expert advice.
+\end{enumerate}
+
+\subsubsection*{Abbreviations and Acronyms}
+\begin{center}\small
+\begin{tabular}{@{}ll@{\hspace{0.6cm}}ll@{}}\toprule
+\textbf{Acronym} & \textbf{Full Form} & \textbf{Acronym} & \textbf{Full Form}\\\midrule
+AI & Artificial Intelligence & OTP & One-Time Password\\
+API & Application Programming Interface & PB & Personal Best\\
+BMI & Body Mass Index & PIN & Personal Identification Number\\
+DB & Database & SRS & Software Requirements Specification\\
+FAQ & Frequently Asked Questions & SQL & Structured Query Language\\
+GPS & Global Positioning System & UI & User Interface\\
+GUI & Graphical User Interface & UX & User Experience\\
+MFA & Multi-Factor Authentication & & \\\bottomrule
+\end{tabular}\end{center}
+
+\subsubsection*{References}
+\begin{itemize}
+ \item WHO. \emph{Healthy Diet Factsheet}. \url{https://www.who.int/news-room/fact-sheets/detail/healthy-diet}
+ \item WHO. \emph{Mental Health: Strengthening Our Response}. \url{https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response}
+ \item CDC. \emph{Physical Activity Basics}. \url{https://www.cdc.gov/physicalactivity/basics/index.htm}
+ \item Harvard Medical School. \emph{The Benefits of Mindfulness Meditation}. \url{https://www.health.harvard.edu/mind-and-mood/benefits-of-mindfulness-meditation}
+ \item JMIR. \emph{Effectiveness of Mobile Health Apps for Wellness Monitoring}. \url{https://www.jmir.org/2021/4/e26524}
+ \item Edamam. \emph{Food \& Nutrition Analysis API Documentation}. \url{https://developer.edamam.com/edamam-docs-nutrition-api}
+ \item Google Fit Developers. \emph{Fitness and Activity Tracking API}. \url{https://developers.google.com/fit}
+\end{itemize}
+
+%------------------------------------------------------------
+\section{Feasibility Report}
+
+\subsection{Product Perspective}
+\begin{enumerate}
+ \item \textbf{User registration:} open the website or app, click ``Sign Up'' and enter email, password, name, age, gender and fitness goal.
+ \item \textbf{User login:} log in with email and password, or with Google or Apple.
+ \item \textbf{User profile:} the personalized dashboard lets users update height, weight, medical conditions, diet preferences and picture.
+ \item \textbf{Wellness goals:} under ``Set Goals'', define calorie, step, hydration, weight or mental wellness goals; goals can be changed anytime.
+ \item \textbf{Nutrition tracking:} log meals by manual entry, barcode, food database search or voice; calories and nutrients are calculated automatically.
+ \item \textbf{Workout planning:} use AI-generated routines or the exercise library; track calories burned and duration.
+ \item \textbf{Mental wellness tools:} meditation, mood tracking and AI emotional support chat, with insights from sleep, diet and activity.
+ \item \textbf{Community challenges:} join step, hydration or workout challenges, track rank, earn badges.
+ \item \textbf{Analytics:} charts for calories, steps, workouts, hydration and mood with weekly and monthly comparison.
+ \item \textbf{Reports:} downloadable PDF reports with nutrition summaries, mood trends, workout metrics and recommendations.
+\end{enumerate}
+
+\subsection{Product Functions}
+\paragraph{1. User registration and profiles.} Registration by email or social account with secure verification before activation. A profile page holds age, gender, height, weight, medical conditions and preferences, a profile picture and contact details; preferences are customizable for personalized recommendations.
+\paragraph{2. Nutrition tracking and management.} Meals logged by search, barcode, voice or manual entry, showing calories, carbs, protein and fats. Entries can be edited, deleted or duplicated; the system totals daily intake against goals and keeps a meal history.
+\paragraph{3. Workout planning and activity tracking.} Guided workouts from customizable templates with warm-up, exercises, reps, sets and cooldown. Sessions can be modified, rescheduled or repeated, and several versions saved for different goals (fat loss, muscle gain).
+\paragraph{4. Template selection and browsing.} A library of professional workout and diet templates showing difficulty, duration, expected results and equipment, with keyword search and filters for duration, difficulty, goal and diet preference.
+\paragraph{5. Mental wellness and AI interaction.} Mood logging with labels and intensity, with accessible history. The AI Wellness Coach provides emotional support, guidance and motivation; meditation, breathing exercises and stress-relief practices are offered.
+\paragraph{6. Community challenges and social engagement.} Step, hydration and workout challenges with leaderboards; sharing progress and milestones in groups; following members or experts.
+\paragraph{7. Analytics and insights.} Analytics for calories, steps, workouts, hydration and mood over weekly, monthly and custom ranges; downloadable reports with AI recommendations.
+\paragraph{8. Admin panel.} Management of accounts, content, challenges and issue reports; removing, suspending or restricting violators; adding, modifying or removing templates and resources.
+
+\subsection{User Characteristics}
+\begin{enumerate}
+ \item \textbf{General users:} fitness enthusiasts, students, working professionals and adults aged 16--45 who log meals, work out, track moods, join challenges and use the AI coach. They value an intuitive interface, personalized recommendations and clear analytics.
+ \item \textbf{Wellness seekers (goal-oriented users):} users pursuing weight loss, muscle gain, stress reduction or healthier habits. They check progress charts, follow plans and expect detailed tracking, reminders and structured plans.
+ \item \textbf{Administrators:} maintain operations and community standards, manage accounts, review reports, update templates, analyze feedback and make data-driven decisions.
+\end{enumerate}
+
+\subsection{General Constraints, Assumptions and Dependencies}
+\subsubsection*{Constraints}
+\begin{itemize}
+ \item \textbf{Budget:} limited funds may require prioritizing authentication, tracking and the AI chatbot over advanced analytics or premium features.
+ \item \textbf{Time:} deadlines require realistic development, testing and deployment schedules.
+ \item \textbf{Technology stack:} limited by team expertise, licensing costs and infrastructure; API integrations need compatible technologies.
+ \item \textbf{Data privacy and compliance:} Indian data protection norms and health-privacy considerations limit design and data handling.
+ \item \textbf{Device compatibility:} must run on phones, tablets and desktops, which restricts UI complexity and heavy features.
+\end{itemize}
+\subsubsection*{Assumptions and Dependencies}
+\begin{enumerate}
+ \item \textbf{User proficiency:} basic digital literacy and understanding of terms like calories, steps and hydration.
+ \item \textbf{Authentication:} every user has a valid email or social login and protects their credentials.
+ \item \textbf{Administrative oversight:} dedicated admins monitor activity, manage content, handle reports, maintain database integrity and oversee premium services, challenges and AI model updates.
+ \item \textbf{Connectivity:} stable internet is assumed; low connectivity may limit live chat or analytics.
+ \item \textbf{Software:} a modern browser or the mobile app; notifications, tracking and chat depend on device permissions and OS.
+ \item \textbf{Wellness content:} template and meditation availability may depend on partnerships with trainers, nutritionists and experts.
+ \item \textbf{Third-party integrations:} nutrition databases, AI APIs and fitness APIs; their downtime or policy changes may affect functionality.
+\end{enumerate}
+
+%------------------------------------------------------------
+\section{Gantt Chart}
+The Gantt chart shows the development lifecycle and dependencies. The project begins with \textbf{Planning} (market research, architecture, compliance, resources), then \textbf{AI/ML Development} (data collection and training of workout, mental wellness and nutrition models), then \textbf{Platform Development} (backend API, frontend, database, authentication and security), and finally \textbf{Integration \& Testing} (ML integration, system, security and user acceptance testing).
+
+\reportfigure{gantt.png}{WellnexUS project Gantt chart}{fig:gantt}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{|l|l|Y|}\hline
+\textbf{Phase} & \textbf{Dates} & \textbf{Tasks}\\\hline
+1. Planning & Aug 25 -- Aug 31 & Market research (market and user needs); tech architecture (design, stack); compliance plan (privacy, medical guidance rules); resource allocation (roles, sprints, infrastructure)\\\hline
+2. AI/ML Development & Sep 1 -- Sep 20 & Data collection and preprocessing; workout AI model; mental health AI model (stress, mindfulness, mood); nutrition recommendation model; model testing (accuracy, bias, performance)\\\hline
+3. Platform Development & Sep 20 -- Oct 18 & Backend API (data access, AI endpoints, business logic); frontend UI; database setup; authentication and security (login, encryption, secure sessions)\\\hline
+4. Integration \& Testing & Oct 18 -- Nov 3 & ML integration; system testing; security testing; user acceptance testing\\\hline
+\end{tabularx}\end{center}
+\textbf{Total duration:} about 10 weeks (Aug 25 -- Nov 3).
+
+%==================== CHAPTER 2 ====================
+\chapter{Analysis Phase}
+
+\section{Use Case Diagram}
+\reportfigure[0.78]{usecase.png}{Use case diagram of WellnexUS}{fig:usecase}
+\subsection*{Actors}
+\begin{itemize}
+ \item \textbf{User:} registers or logs in, selects goals, inputs medical conditions, tracks and logs activity, views analytics and manages profile settings.
+ \item \textbf{AI Coach:} external intelligent component that monitors progress, gives guidance and coaching, tracks performance and conducts virtual challenges or workshops.
+ \item \textbf{Admin:} moderates accounts, manages content and resources, maintains security and generates reports.
+ \item \textbf{External API:} third-party nutrition (Nutrition API) and mental-wellness (Therapy API) services.
+\end{itemize}
+\subsection*{Relationships}
+\begin{itemize}
+ \item \texttt{<<include>>}: \emph{Manage Account} includes \emph{Register/Login}; \emph{Goal Selection} and \emph{Tracking and Logging} include \emph{Dashboard Usage}.
+ \item \texttt{<<extend>>}: optional or premium functions such as AI coaching and workshops.
+ \item Generalization may apply to user types (Basic, Premium) or API providers.
+\end{itemize}
+
+\section{Use-Case Templates}
+\begin{usecase}{Use Case 1: User Registration and Health Profile Setup}
+Use Case ID & UC-101\\\hline
+Actors & New User\\\hline
+Description & A new user creates an account and completes the health profile setup.\\\hline
+Preconditions & User has access to the application and is not logged in.\\\hline
+Task Sequence & \begin{enumerate}[nosep,leftmargin=*]
+ \item User selects ``Sign Up''
+ \item Enters email and password
+ \item Verifies email address
+ \item Completes health questionnaire (age, gender, weight, height, goals)
+ \item Sets activity level and preferences
+ \item System generates initial health metrics and goals\end{enumerate}\\\hline
+Postconditions & Account created, personalized dashboard available, initial recommendations generated.\\\hline
+Priority & High\\\hline Authors & Team WellnexUS\\\hline
+\end{usecase}
+
+\begin{usecase}{Use Case 2: Daily Nutrition Tracking}
+Use Case ID & UC-102\\\hline
+Actors & Registered User\\\hline
+Description & User logs food consumption through the day using multiple input methods.\\\hline
+Preconditions & User is logged in and has completed profile setup.\\\hline
+Task Sequence & \begin{enumerate}[nosep,leftmargin=*]
+ \item User opens the Nutrition section
+ \item Selects meal type (breakfast/lunch/dinner/snack)
+ \item Chooses input method (search, barcode scan, voice)
+ \item Enters or confirms food items and quantities
+ \item System calculates and displays nutritional information
+ \item User reviews and saves the entry\end{enumerate}\\\hline
+Postconditions & Meal logged, daily totals updated, progress metrics recalculated.\\\hline
+Priority & High\\\hline Authors & Team WellnexUS\\\hline
+\end{usecase}
+
+\begin{usecase}{Use Case 3: AI Chatbot Mental Wellness Session}
+Use Case ID & UC-103\\\hline
+Actors & Registered User, AI System\\\hline
+Description & User has a conversational mental health support session with the AI chatbot.\\\hline
+Preconditions & User is logged in and the chatbot service is available.\\\hline
+Task Sequence & \begin{enumerate}[nosep,leftmargin=*]
+ \item User opens the Mental Wellness section
+ \item Selects ``Chat with Wellness Assistant''
+ \item Chooses conversation mode (text/voice)
+ \item Engages in dialogue with the chatbot
+ \item System gives empathetic responses and coping strategies
+ \item Session summary and recommendations provided\end{enumerate}\\\hline
+Postconditions & Chat history saved, mood insights generated, follow-up actions suggested.\\\hline
+Priority & Medium\\\hline Authors & Team WellnexUS\\\hline
+\end{usecase}
+
+\begin{usecase}{Use Case 4: Personalized Workout Generation}
+Use Case ID & UC-104\\\hline
+Actors & Registered User, AI System\\\hline
+Description & System generates a customized workout plan from the user's profile and progress.\\\hline
+Preconditions & User profile complete, workout history available.\\\hline
+Task Sequence & \begin{enumerate}[nosep,leftmargin=*]
+ \item User requests a new workout plan
+ \item System analyzes goals, progress and preferences
+ \item AI generates a personalized routine
+ \item User reviews and customizes the plan
+ \item System provides exercise demonstrations and instructions
+ \item Plan saved to the user calendar\end{enumerate}\\\hline
+Postconditions & New plan created, calendar updated, progress tracking initialized.\\\hline
+Priority & High\\\hline Authors & Team WellnexUS\\\hline
+\end{usecase}
+
+\section{Activity Diagram and Swimlane Diagram}
+\subsection{Activity Diagram}
+\reportfigure[0.72]{activity.png}{Activity diagram of WellnexUS}{fig:activity}
+The flow is: \textbf{Start} $\rightarrow$ system initialization and security check $\rightarrow$ decision \emph{New User / Existing User}.
+\begin{itemize}
+ \item \textbf{New user:} register $\rightarrow$ set goals $\rightarrow$ input medical details $\rightarrow$ personalize dashboard $\rightarrow$ load main interface.
+ \item \textbf{Existing user:} login $\rightarrow$ access personalized dashboard.
+\end{itemize}
+From the dashboard the user can perform:
+\begin{itemize}
+ \item \textbf{Nutrition tracking:} browse food database $\rightarrow$ log meals $\rightarrow$ view calorie summary $\rightarrow$ update daily progress.
+ \item \textbf{Workout tracking:} view plan $\rightarrow$ start workout $\rightarrow$ log completion $\rightarrow$ update fitness metrics.
+ \item \textbf{Mental wellness:} check mood $\rightarrow$ access therapy or meditation $\rightarrow$ log reflection $\rightarrow$ update emotional insights.
+\end{itemize}
+\textbf{End:} generate analytics and feedback $\rightarrow$ save session $\rightarrow$ logout.
+
+\subsection{Swimlane Diagram}
+\reportfigure[0.78]{swimlane.png}{Swimlane diagram of WellnexUS}{fig:swimlane}
+\begin{itemize}
+ \item \textbf{User:} opens the app, logs in or registers, inputs personal, nutritional and wellness data, views results.
+ \item \textbf{Frontend:} initializes the app, shows login and onboarding, processes input and module selection.
+ \item \textbf{Authentication:} validates sessions and credentials, authenticates users, manages tokens.
+ \item \textbf{Database system:} stores user data, nutrition logs, workouts and mood entries; retrieves history.
+ \item \textbf{Analytics engine:} analyzes trends, generates insights and recommendations.
+ \item \textbf{Notification:} sends alerts and reminders based on analytics or goal progress.
+ \item \textbf{External APIs:} syncs nutrition, fitness and mental health data.
+\end{itemize}
+
+\section{Data Flow Diagram}
+\subsection{DFD Level-0}
+\reportfigure[0.78]{dfd0.png}{DFD Level 0 (context diagram)}{fig:dfd0}
+\begin{itemize}
+ \item \textbf{User:} sends goals and health data; receives personalized plans, recommendations and analytics.
+ \item \textbf{Admin:} verifies user data, manages access and receives analytical feedback.
+ \item \textbf{AI Coach:} exchanges user data and delivers tailored workout, nutrition and wellness suggestions.
+ \item \textbf{External API:} provides third-party data such as nutrition databases and training content.
+\end{itemize}
+
+\subsection{DFD Level-1}
+\reportfigure{dfd1.png}{DFD Level 1}{fig:dfd1}
+The system captures user data and goals (1.0) into \emph{User Profile \& Goals} (D1) and generates personalized plans (2.0). Progress and session logs are tracked through \emph{Analytics \& Session Tracking} (3.0) into \emph{Session Logs \& API Data} (D2). \emph{AI Coach Integration} (4.0) uses analytics and stored knowledge (D3) for personalized suggestions. Admins manage rules, model parameters and AI updates via \emph{Admin Management} (5.0), updating D3 and \emph{Admin Rules \& Config} (D4). \emph{API Integration} (6.0) handles communication with third-party services.
+
+\subsection{DFD Level-2}
+\reportfigure{dfd2.png}{DFD Level 2: Generate Wellness Plan (Process 2.0)}{fig:dfd2}
+Process 2.0 is decomposed into four subprocesses and two internal data stores.
+\begin{description}
+ \item[2.1 Get Inputs.] Retrieves the profile and goals from D1 and historical sessions and API recommendations from D2.
+ \item[2.2 Build Context \& Apply Rules.] Structures the data in D5, applies the admin rules from D4 and stores the resulting plan in D6.
+ \item[2.3 Store Plan \& Progress.] Saves the plan and progress indicators into D2 so future recommendations improve.
+ \item[2.4 Present Plan to User.] Formats the final plan from D6 and delivers it as personalized recommendations.
+\end{description}
+\textbf{Internal stores:} D5 -- Planning Context (temporary combined data during plan creation); D6 -- Plan Record (finalized plans and progress details).
+
+\section{Software Requirement Specification}
+\subsection{User Interfaces}
+\begin{enumerate}
+ \item \textbf{Home page:} ``Log In'', ``Sign Up'' and ``Start Your Wellness Journey'' buttons; quick access to Nutrition Tracking, Workout Plans, AI Wellness Chat and Daily Tips; a search bar; links to health tips and featured challenges.
+ \item \textbf{Login page:} email/password or Google/Apple login; validation prompts; ``Forgot Password?'' with email or OTP reset.
+ \item \textbf{Wellness dashboard:} daily calories, activity, hydration, mood and recommendations; one-click widgets to log meals, start workouts, track mood or chat with the AI Coach; graphs and progress rings.
+ \item \textbf{Nutrition tracking:} logging by search, barcode, manual or voice input; calories, macronutrients and portions; healthier alternatives, recipes and meal templates.
+ \item \textbf{Workout interface:} categories such as strength, yoga, HIIT and cardio; difficulty, duration, equipment and demo videos; guided sessions with timers, rep counters and real-time progress.
+ \item \textbf{Mental wellness:} mood tracking, meditation, breathing exercises and AI emotional support; mood icons, journaling and trends; meditation with visuals, sounds and timers.
+ \item \textbf{Template selection:} curated workout, meal and wellness templates filterable by goal, diet, difficulty and duration, with a preview mode.
+ \item \textbf{Profile management:} update name, age, height, weight, conditions and preferences; picture, connected devices and notification settings; activity history, downloaded reports and linked health data.
+\end{enumerate}
+
+\subsection{Functional Requirements}
+\paragraph{1. User registration and authentication.} Users create an account by email or social login; the system validates credentials and keeps secure sessions.
+\begin{itemize}
+ \item Verification email or OTP upon registration; secure password reset.
+ \item Google/Apple login; no duplicate accounts with the same email.
+\end{itemize}
+\paragraph{2. User profile management.} Personal profile for wellness information, body metrics, preferences and linked devices.
+\begin{itemize}
+ \item Edit personal details (name, age, gender, contact, picture) and health details (height, weight, conditions, diet).
+ \item Manage connected devices; adjust notification and privacy settings.
+\end{itemize}
+\paragraph{3. Nutrition tracking and meal management.}
+\begin{itemize}
+ \item Add meals by search, barcode, voice or manual entry; automatic calories, carbs, protein and fats.
+ \item Edit, delete or duplicate meals; daily and weekly summaries.
+\end{itemize}
+\paragraph{4. Workout management.}
+\begin{itemize}
+ \item Exercise library with images and videos; pre-made templates or custom plans.
+ \item Track reps, sets, duration and calories burned; save sessions for history and analytics.
+\end{itemize}
+\paragraph{5. Mental wellness and mood tracking.}
+\begin{itemize}
+ \item Log mood with labels and intensity; guided meditation and breathing sessions.
+ \item Supportive, context-based AI coach responses; emotional history and trends.
+\end{itemize}
+\paragraph{6. AI personal recommendations.}
+\begin{itemize}
+ \item Based on nutrition, workouts, mood and activity levels.
+ \item Daily suggestions (meals, workouts, hydration) updated as behavior changes.
+\end{itemize}
+\paragraph{7. Community challenges and social engagement.}
+\begin{itemize}
+ \item Join challenges (steps, calories, hydration, workouts); view leaderboard rank.
+ \item Share achievements; earn badges or points.
+\end{itemize}
+\paragraph{8. Analytics and reporting.}
+\begin{itemize}
+ \item Daily, weekly and monthly charts; trend analysis for meals, workouts, mood and habits.
+ \item PDF progress reports; AI highlights of patterns or warning signs (e.g., low mood, inactivity).
+\end{itemize}
+\paragraph{9. Admin panel and platform management.}
+\begin{itemize}
+ \item Block, suspend or edit accounts; add, edit or remove templates, meal data and content.
+ \item Monitor challenges and reports; view system analytics and performance logs.
+\end{itemize}
+
+\subsection{Non-Functional Requirements}
+\small
+\begin{longtable}{|p{2.5cm}|p{11.9cm}|}\hline
+\textbf{Category} & \textbf{Requirements}\\\hline\endhead
+Performance & Dashboards, logs and analytics pages load within 2 seconds; at least 5,000 concurrent users at peak; chatbot and recommendations respond within 3 seconds.\\\hline
+Security & TLS 1.3 for all transfers; AES-256 for sensitive data (passwords, health metrics); compliance with Indian standards (DPDP Act 2023); optional multi-factor authentication.\\\hline
+Usability & Easy navigation with minimal instruction; consistent layout, icons and interaction; accessibility (voice input, large icons, contrast) meeting WCAG 2.1.\\\hline
+Compatibility & Responsive on phones, tablets and desktops; Chrome, Firefox, Safari and Edge; Android 11+ and iOS 14+.\\\hline
+Reliability & At least 99.5\% uptime excluding maintenance; automatic backup and recovery; AI and analytics stay functional under heavy load.\\\hline
+Scalability & Supports 2$\times$ yearly user growth; handles large log, health and workout data volumes; incremental model retraining without downtime.\\\hline
+Maintainability & Clean documented code; CI/CD with minimal downtime; logs and admin dashboards for fast diagnosis.\\\hline
+\end{longtable}
+\normalsize
+
+\subsection{Performance Requirements}
+\small
+\begin{longtable}{|p{2.6cm}|p{6.7cm}|p{5.1cm}|}\hline
+\textbf{Aspect} & \textbf{Requirement} & \textbf{Justification}\\\hline\endhead
+Response time & Respond to actions (logging meals, starting workouts, dashboards, AI Coach chat) within 2 s. & Reduces frustration and sustains engagement.\\\hline
+Throughput & Support at least 5,000 concurrent users without degradation. & Peak traffic in morning and evening wellness hours.\\\hline
+Load handling & Stay performant while many users log meals, track workouts and use AI chat. & Prevents crashes during peak periods.\\\hline
+Caching & Cache food items, workout templates and dashboards. & Lowers database load and speeds pages.\\\hline
+AI processing time & Chatbot replies, recommendations and insights within 3 s. & Real-time guidance and conversation flow.\\\hline
+Data sync rate & Sync steps, heart rate and calories with devices every 10--20 s when active. & Timely real-time tracking and analytics.\\\hline
+Report generation & Weekly and monthly reports within 10 s. & Encourages regular progress review.\\\hline
+Server utilization & At peak, CPU $\le$ 80\% and memory $<$ 85\%. & Prevents unexpected downtime.\\\hline
+\end{longtable}
+\normalsize
+
+\subsection{ER Diagram}
+\reportfigure{er.png}{Entity--Relationship diagram of WellnexUS}{fig:er}
+The ER diagram shows the relationships among core entities such as \texttt{Users}, \texttt{Meals}, \texttt{Workout\_Sessions}, \texttt{Mood\_Entries}, \texttt{Chat\_Sessions} and \texttt{AI\_Models}. A user logs meals (via \texttt{Meal\_Items}) linked to \texttt{Food\_Catalog}, and tracks workouts through \texttt{Workout\_Templates} and \texttt{Exercises}. Mental wellness is managed via \texttt{Mood\_Entries} and \texttt{Chat\_Sessions} (with \texttt{Chat\_Messages}), which link to \texttt{AI\_Models} that generate \texttt{Recommendations}. \texttt{Payments}, \texttt{Challenges}, \texttt{Challenge\_Participants}, \texttt{Media} and \texttt{Admin\_Logs} support premium features, social engagement and system control.
+
+\section{User Stories / Story Cards}
+\storycard{101 User Registration}{As a new user, I want to create an account so that I can access all WellnexUS wellness features.}{Welcome to WellnexUS! Let's begin your wellness journey.}{(a) ``Invalid email or password.'' (b) ``Network error -- please try again.'' (c) ``Server not responding.''}
+\storycard{102 Health Profile Setup}{As a new user, I want to complete my health profile so that I can get personalized wellness recommendations.}{Profile setup complete! Personalized insights are ready.}{(a) ``Incomplete information -- please fill all required fields.'' (b) ``Unable to save profile. Check your internet connection.''}
+\storycard{201 Food Logging}{As a user, I want to log my meals easily so that I can monitor my daily nutrition.}{Meal logged successfully. Calories updated.}{(a) ``Invalid food entry.'' (b) ``Unable to connect to food database.'' (c) ``Network error -- please try again later.''}
+\storycard{301 Workout Sessions}{As a user, I want to follow guided workout sessions so that I can perform exercises correctly.}{Workout session completed! Great job!}{(a) ``Video unavailable or failed to load.'' (b) ``Unable to record progress.'' (c) ``Internet connection error.''}
+\storycard{401 Mood Tracking}{As a user, I want to record my mood daily so that I can understand my emotional patterns.}{Mood recorded successfully. View trends in dashboard.}{(a) ``Please select a mood before saving.'' (b) ``Unable to sync data with server.''}
+\storycard{402 AI Wellness Chat}{As a user, I want to chat with the AI wellness coach so that I can receive personalized guidance.}{Conversation saved. AI insights generated successfully.}{(a) ``AI service temporarily unavailable.'' (b) ``Failed to fetch response -- check connection.''}
+\storycard{501 Health Dashboard}{As a user, I want to view my daily progress summary so that I can track my fitness, nutrition and wellness in one place.}{Dashboard loaded successfully. Here's your progress!}{(a) ``Data unavailable -- please refresh.'' (b) ``Server not responding.''}
+\storycard{601 Wellness Challenges}{As a user, I want to participate in community wellness challenges so that I can stay motivated with others.}{Challenge joined successfully! Let's stay consistent.}{(a) ``Challenge registration failed.'' (b) ``Network error -- please try again later.''}
+
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+This Software Requirements Specification outlines the foundation for developing WellnexUS, a holistic wellbeing platform that unifies physical fitness, nutrition management and mental wellness in one application. It defines the system's objectives, scope, functional and non-functional requirements, user stories and models so that all stages of development stay clear and consistent.
+
+WellnexUS promotes healthy living through personalized recommendations, AI-driven insights and an engaging experience. By combining wellness tracking, community participation and real-time analytics, it gives users a comprehensive view of their health and progress. This SRS provides a clear roadmap for developers, designers and stakeholders, supporting the transition from analysis to design and implementation.
+
+\end{document}
