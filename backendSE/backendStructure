@@ -1,0 +1,79 @@
+server/
+├─ src/
+│  ├─ controllers/
+│  │   auth.controller.js
+│  │   users.controller.js
+│  │   meals.controller.js
+│  │   workouts.controller.js
+│  │   community.controller.js
+│  │   supplements.controller.js
+│  │   orders.controller.js
+│  ├─ models/
+│  │   User.js
+│  │   Meal.js
+│  │   Workout.js
+│  │   ScheduledWorkout.js
+│  │   Post.js
+│  │   Comment.js
+│  │   Supplement.js
+│  │   Order.js
+│  ├─ routes/
+│  │   auth.routes.js
+│  │   users.routes.js
+│  │   meals.routes.js
+│  │   workouts.routes.js
+│  │   community.routes.js
+│  │   supplements.routes.js
+│  │   orders.routes.js
+│  ├─ middleware/
+│  │   auth.middleware.js
+│  │   error.middleware.js
+│  │   upload.middleware.js
+│  ├─ utils/
+│  │   validators.js
+│  │   calc.js
+│  ├─ config/
+│  │   db.js
+│  ├─ seed/
+│  │   seed.js
+│  ├─ app.js
+│  └─ server.js
+├─ .env
+├─ package.json
+└─ README.md
+
+
+
+
+in models
+I'll include these files:
+
+User.js
+
+Meal.js
+
+Workout.js
+
+ScheduledWorkout.js
+
+Post.js
+
+Comment.js
+
+Supplement.js
+
+Order.js
+
+Conversation.js (chat session)
+
+Message.js (chat messages)
+
+PointEvent.js
+
+Challenge.js
+
+Water.js
+
+Journal.js
+
+MeditationSession.js
